@@ -1,0 +1,83 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  tag?: string;
+}
+
+const { title, description, icon, tag } = Astro.props;
+---
+
+<div class="feature-card">
+  <div class="feature-icon">{icon}</div>
+  <div class="feature-content">
+    <h3 class="feature-title">
+      {title}
+      {tag && <span class="feature-tag">{tag}</span>}
+    </h3>
+    <p class="feature-desc">{description}</p>
+  </div>
+</div>
+
+<style>
+  .feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    display: flex;
+    gap: 18px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent-dim);
+    background: var(--bg-elevated);
+  }
+
+  .feature-icon {
+    font-size: 24px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-glow);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+
+  .feature-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .feature-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feature-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .feature-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+</style>

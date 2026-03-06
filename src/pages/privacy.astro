@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<Layout
+  title="Privacy Policy — KNXplorer"
+  description="KNXplorer privacy policy."
+>
+  <Nav />
+  <main class="privacy">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: March 2026</p>
+
+      <h2>Data Collection</h2>
+      <p>
+        KNXplorer does <strong>not</strong> collect, transmit, or store any personal data.
+        All KNX project files and bus data stay on your device.
+      </p>
+
+      <h2>Network Access</h2>
+      <p>
+        KNXplorer communicates only with KNX/IP gateways on your local network.
+        No data is sent to external servers.
+      </p>
+
+      <h2>Analytics</h2>
+      <p>
+        We do not use any analytics or tracking services.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions? Reach out at
+        <a href="mailto:knxplorer@freiwald.dev">knxplorer@freiwald.dev</a>.
+      </p>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .privacy {
+    padding: 120px 24px 80px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .updated {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

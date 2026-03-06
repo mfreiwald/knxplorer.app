@@ -1,17 +1,934 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import TelegramStream from '../components/TelegramStream.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="KNXplorer — KNX Bus Monitor & Project Explorer for iOS & macOS"
+  description="Professional KNX diagnostics on your iPhone and Mac. Live bus monitoring, .knxproj import, device explorer — without ETS."
+>
+  <Nav />
+
+  <!-- Hero -->
+  <section class="hero">
+    <TelegramStream />
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Native iOS & macOS App
+      </div>
+      <h1 class="hero-title">
+        Your KNX bus.<br />
+        <span class="hero-accent">Without ETS.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Live bus monitoring, project import, and device diagnostics —
+        built for integrators who need answers fast.
+      </p>
+      <div class="hero-actions">
+        <a href="#download" class="btn btn-primary">Download for Free</a>
+        <a href="#features" class="btn btn-ghost">See Features</a>
+      </div>
+      <div class="hero-platforms">
+        <span class="platform-badge">iOS 26+</span>
+        <span class="platform-badge">macOS 26+</span>
+        <span class="platform-badge">iPadOS 26+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Telegram Preview -->
+  <section class="preview-section">
+    <div class="container">
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">Bus Monitor — Living Room</span>
+          <div class="terminal-filter">
+            <span class="filter-tag active">2/1/*</span>
+            <span class="filter-tag">DPT9</span>
+          </div>
+        </div>
+        <div class="terminal-body">
+          <div class="tg-row">
+            <span class="t-ts">14:32:05.831</span>
+            <span class="t-dir out">TX</span>
+            <span class="t-src">1.1.4</span>
+            <span class="t-arrow">→</span>
+            <span class="t-ga">2/1/0</span>
+            <span class="t-name">Living Room · Ceiling</span>
+            <span class="t-type">GroupValueWrite</span>
+            <span class="t-val on">ON</span>
+            <span class="t-dpt">DPT 1.001</span>
+          </div>
+          <div class="tg-row">
+            <span class="t-ts">14:32:05.847</span>
+            <span class="t-dir in">RX</span>
+            <span class="t-src">1.1.12</span>
+            <span class="t-arrow">→</span>
+            <span class="t-ga">3/0/1</span>
+            <span class="t-name">HVAC · Room Temp</span>
+            <span class="t-type">GroupValueResp</span>
+            <span class="t-val">21.4 °C</span>
+            <span class="t-dpt">DPT 9.001</span>
+          </div>
+          <div class="tg-row">
+            <span class="t-ts">14:32:06.102</span>
+            <span class="t-dir out">TX</span>
+            <span class="t-src">1.2.1</span>
+            <span class="t-arrow">→</span>
+            <span class="t-ga">2/3/5</span>
+            <span class="t-name">Blinds · South</span>
+            <span class="t-type">GroupValueWrite</span>
+            <span class="t-val">75%</span>
+            <span class="t-dpt">DPT 5.001</span>
+          </div>
+          <div class="tg-row highlight">
+            <span class="t-ts">14:32:06.330</span>
+            <span class="t-dir in">RX</span>
+            <span class="t-src">1.1.8</span>
+            <span class="t-arrow">→</span>
+            <span class="t-ga">1/0/12</span>
+            <span class="t-name">Sensor · Motion</span>
+            <span class="t-type">GroupValueRead</span>
+            <span class="t-val dim">—</span>
+            <span class="t-dpt"></span>
+          </div>
+          <div class="tg-row">
+            <span class="t-ts">14:32:06.512</span>
+            <span class="t-dir out">TX</span>
+            <span class="t-src">1.3.2</span>
+            <span class="t-arrow">→</span>
+            <span class="t-ga">4/1/0</span>
+            <span class="t-name">Kitchen · Spots</span>
+            <span class="t-type">GroupValueWrite</span>
+            <span class="t-val off">OFF</span>
+            <span class="t-dpt">DPT 1.001</span>
+          </div>
+          <div class="tg-cursor"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Capabilities</span>
+        <h2 class="section-title">Everything you need on the bus</h2>
+        <p class="section-desc">
+          Built from scratch in Swift for Apple platforms.
+          No Electron. No web views. Pure native performance.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <FeatureCard
+          icon="◈"
+          title="Live Bus Monitor"
+          description="Stream KNX telegrams in real-time with sub-millisecond timestamps. Filter by group address, physical address, DPT, direction, or value range."
+          tag="Core"
+        />
+        <FeatureCard
+          icon="⬡"
+          title="Project Import"
+          description="Drop your .knxproj file — ETS 4, 5, and 6 supported. Password-protected projects handled. Full GA ↔ Device ↔ Room mapping."
+        />
+        <FeatureCard
+          icon="◇"
+          title="Device Explorer"
+          description="Discover KNX/IP gateways automatically. Browse devices, check status, read group addresses — all without touching ETS."
+        />
+        <FeatureCard
+          icon="△"
+          title="Group Address Monitor"
+          description="Watch specific group addresses live. See decoded values with proper DPT interpretation. Pin favorites for quick access."
+        />
+        <FeatureCard
+          icon="▣"
+          title="Send Telegrams"
+          description="Write to the bus directly. Switch, dim, set temperature, trigger scenes. Type-safe value input based on DPT."
+          tag="Pro"
+        />
+        <FeatureCard
+          icon="◎"
+          title="Offline Reference"
+          description="Imported project data stays on device. Browse building structure, GA names, and device topology without a bus connection."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section class="workflow-section" id="workflow">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Workflow</span>
+        <h2 class="section-title">From site to diagnosis in seconds</h2>
+      </div>
+
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Connect</h3>
+            <p>Auto-discover KNX/IP gateways on the local network. Tap to connect — no IP configuration needed.</p>
+          </div>
+        </div>
+        <div class="workflow-connector"></div>
+        <div class="workflow-step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Import</h3>
+            <p>Load the .knxproj file from the customer. All group addresses, devices, and room assignments resolve instantly.</p>
+          </div>
+        </div>
+        <div class="workflow-connector"></div>
+        <div class="workflow-step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Monitor</h3>
+            <p>See live traffic with decoded values and human-readable names. Filter, pin, and export what matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- No ETS -->
+  <section class="contrast-section">
+    <div class="container">
+      <div class="contrast-grid">
+        <div class="contrast-card contrast-old">
+          <div class="contrast-label">The old way</div>
+          <ul>
+            <li>Boot Windows laptop</li>
+            <li>Launch ETS (wait...)</li>
+            <li>Navigate project tree</li>
+            <li>Open Group Monitor</li>
+            <li>Manually decode telegrams</li>
+            <li>Hope it doesn't freeze at 1000+ telegrams</li>
+          </ul>
+        </div>
+        <div class="contrast-card contrast-new">
+          <div class="contrast-label">With KNXplorer</div>
+          <ul>
+            <li>Pull out your iPhone</li>
+            <li>Tap "Connect"</li>
+            <li>See decoded traffic — instantly</li>
+          </ul>
+          <div class="contrast-time">
+            <span class="time-value">&lt; 3s</span>
+            <span class="time-label">to first telegram</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech -->
+  <section class="tech-section">
+    <div class="container">
+      <div class="tech-grid">
+        <div class="tech-item">
+          <span class="tech-label">Built with</span>
+          <span class="tech-value">Swift 6.2</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-label">UI</span>
+          <span class="tech-value">SwiftUI</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-label">Protocol</span>
+          <span class="tech-value">KNX/IP Tunneling</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-label">Concurrency</span>
+          <span class="tech-value">Swift Actors</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-label">Parser</span>
+          <span class="tech-value">.knxproj ETS 4/5/6</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-label">License</span>
+          <span class="tech-value">Freemium</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="download">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to ditch the laptop<br />on your next site visit?</h2>
+        <p class="cta-desc">
+          KNXplorer is free to explore. Bus monitor and write features available with Pro.
+        </p>
+        <div class="cta-actions">
+          <a href="#" class="app-store-badge" aria-label="Download on the App Store">
+            <svg viewBox="0 0 120 40" width="150" height="50">
+              <rect width="120" height="40" rx="6" fill="#000" stroke="#555" stroke-width="0.5"/>
+              <text x="60" y="15" text-anchor="middle" fill="#fff" font-family="var(--font-display)" font-size="7" font-weight="300">Download on the</text>
+              <text x="60" y="28" text-anchor="middle" fill="#fff" font-family="var(--font-display)" font-size="13" font-weight="600">App Store</text>
+            </svg>
+          </a>
+        </div>
+        <p class="cta-note">Requires iOS 26, iPadOS 26, or macOS 26. Coming 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-brand">KNXplorer</span>
+          <span class="footer-sep">·</span>
+          <span class="footer-copy">Made by <a href="https://freiwald.dev">Michael Freiwald</a></span>
+        </div>
+        <div class="footer-right">
+          <a href="mailto:knxplorer@freiwald.dev">Contact</a>
+          <a href="/privacy">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* ===== Container ===== */
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 80px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 45%, var(--accent-glow), transparent),
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(13, 13, 13, 0.95), transparent);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(212, 149, 42, 0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+    animation: fade-up 0.8s ease-out both;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    animation: fade-up 0.8s ease-out 0.1s both;
+  }
+
+  .hero-accent {
+    color: var(--accent);
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    animation: fade-up 0.8s ease-out 0.2s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fade-up 0.8s ease-out 0.3s both;
+  }
+
+  .hero-platforms {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 32px;
+    animation: fade-up 0.8s ease-out 0.4s both;
+  }
+
+  .platform-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-bright);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    color: var(--text-primary);
+    border-color: var(--text-tertiary);
+  }
+
+  /* ===== Terminal Preview ===== */
+  .preview-section {
+    padding: 0 24px 100px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .terminal-window {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 1px var(--border-subtle);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #EC6A5E; }
+  .dot-yellow { background: #F5BF4F; }
+  .dot-green { background: #61C554; }
+
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+
+  .terminal-filter {
+    display: flex;
+    gap: 6px;
+  }
+
+  .filter-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    color: var(--text-tertiary);
+    border: 1px solid var(--border);
+  }
+
+  .filter-tag.active {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+    background: var(--accent-glow);
+  }
+
+  .terminal-body {
+    padding: 8px 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1;
+    overflow-x: auto;
+  }
+
+  .tg-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 16px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .tg-row:hover {
+    background: var(--bg-elevated);
+  }
+
+  .tg-row.highlight {
+    background: rgba(74, 127, 196, 0.06);
+    border-left: 2px solid var(--blue);
+    padding-left: 14px;
+  }
+
+  .t-ts { color: var(--text-tertiary); min-width: 100px; }
+  .t-dir {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 3px;
+    min-width: 28px;
+    text-align: center;
+  }
+  .t-dir.out { color: var(--accent); background: var(--accent-glow); }
+  .t-dir.in { color: var(--blue); background: rgba(74, 127, 196, 0.12); }
+  .t-src { color: var(--text-secondary); min-width: 45px; }
+  .t-arrow { color: var(--text-tertiary); font-size: 10px; }
+  .t-ga { color: var(--accent-bright); min-width: 50px; font-weight: 500; }
+  .t-name { color: var(--text-secondary); min-width: 160px; font-size: 11px; }
+  .t-type { color: var(--text-tertiary); min-width: 120px; font-size: 11px; }
+  .t-val { color: var(--text-primary); min-width: 60px; font-weight: 500; }
+  .t-val.on { color: var(--green); }
+  .t-val.off { color: var(--red); }
+  .t-val.dim { color: var(--text-tertiary); }
+  .t-dpt { color: var(--text-tertiary); font-size: 10px; }
+
+  .tg-cursor {
+    height: 16px;
+    width: 8px;
+    background: var(--accent);
+    margin: 4px 16px;
+    animation: blink 1s step-end infinite;
+    border-radius: 1px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* ===== Sections ===== */
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ===== Features Grid ===== */
+  .features-section {
+    padding: 100px 24px;
+    background: var(--bg-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  /* ===== Workflow ===== */
+  .workflow-section {
+    padding: 100px 24px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .workflow-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .workflow-step {
+    flex: 1;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .step-number {
+    font-family: var(--font-mono);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--accent-dim);
+    margin-bottom: 16px;
+  }
+
+  .step-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .step-content p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .workflow-connector {
+    width: 60px;
+    height: 1px;
+    background: var(--border);
+    margin-top: 28px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .workflow-steps {
+      flex-direction: column;
+      align-items: center;
+    }
+    .workflow-connector {
+      width: 1px;
+      height: 32px;
+      margin-top: 0;
+    }
+  }
+
+  /* ===== Contrast ===== */
+  .contrast-section {
+    padding: 100px 24px;
+  }
+
+  .contrast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    .contrast-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contrast-card {
+    padding: 32px 28px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .contrast-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+
+  .contrast-old {
+    background: var(--bg-card);
+  }
+
+  .contrast-old .contrast-label {
+    color: var(--text-tertiary);
+  }
+
+  .contrast-old ul {
+    list-style: none;
+  }
+
+  .contrast-old li {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    padding: 6px 0;
+    text-decoration: line-through;
+    text-decoration-color: var(--border);
+  }
+
+  .contrast-new {
+    background: var(--bg-card);
+    border-color: var(--accent-dim);
+  }
+
+  .contrast-new .contrast-label {
+    color: var(--accent);
+  }
+
+  .contrast-new ul {
+    list-style: none;
+  }
+
+  .contrast-new li {
+    font-size: 14px;
+    color: var(--text-primary);
+    padding: 6px 0;
+    position: relative;
+    padding-left: 18px;
+  }
+
+  .contrast-new li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .contrast-time {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .time-value {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .time-label {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  /* ===== Tech ===== */
+  .tech-section {
+    padding: 60px 24px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+  }
+
+  .tech-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tech-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .tech-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    padding: 120px 24px;
+    text-align: center;
+  }
+
+  .cta-content {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cta-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 36px;
+  }
+
+  .cta-actions {
+    margin-bottom: 20px;
+  }
+
+  .app-store-badge {
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .app-store-badge:hover {
+    transform: scale(1.04);
+    opacity: 0.9;
+  }
+
+  .cta-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    padding: 24px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .footer-brand {
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .footer-sep {
+    color: var(--border);
+  }
+
+  .footer-copy a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .footer-copy a:hover {
+    color: var(--accent);
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-right a {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .footer-right a:hover {
+    color: var(--text-primary);
+  }
+</style>
